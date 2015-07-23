@@ -1,4 +1,4 @@
-package com.lemonlab.ssuapp;
+package com.lemonlab.ssuapp.View;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lemonlab.ssuapp.R;
+
 /**
  * Created by lk on 2015. 7. 23..
  */
-public class LibraryFragment extends Fragment {
+public class FoodFragment extends Fragment {
 
-    public LibraryFragment(){
+    public FoodFragment(){
         super();
     }
 

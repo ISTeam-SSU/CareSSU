@@ -1,4 +1,4 @@
-package com.lemonlab.ssuapp;
+package com.lemonlab.ssuapp.View;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -14,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.lemonlab.ssuapp.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -83,28 +86,20 @@ public class MainActivity extends AppCompatActivity {
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
+        private String[] titles= {"시간표", "먹거리" ,"도서관" ,"공지사항"};
+
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "시간표";
-                case 1:
-                    return "먹을거리";
-                case 2:
-                    return "도서관";
-                case 3:
-                    return "학사정보";
-            }
-            throw new IndexOutOfBoundsException();
+            return titles[position];
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return titles.length;
         }
 
         @Override
@@ -113,13 +108,18 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return new TimeFragment();
                 case 1:
-                    return new FoodFragment();
+                    return new NotiFragment();
                 case 2:
-                    return new LibraryFragment();
+                    return new NotiFragment();
                 case 3:
                     return new NotiFragment();
             }
             throw new IndexOutOfBoundsException();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return PagerAdapter.POSITION_NONE;
         }
     }
 }
