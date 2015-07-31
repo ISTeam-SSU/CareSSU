@@ -44,7 +44,7 @@ public class TimeFragment extends Fragment {
             }
         });
         v.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        Timetable mp = new Timetable(view.getContext());
+        TableDraw mp = new TableDraw(view.getContext());
         v.addView(mp);
     }
 

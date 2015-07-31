@@ -10,10 +10,10 @@ import android.view.View;
 /**
  * Created by lk on 2015. 7. 24..
  */
-public class Timetable extends View {
+public class TableDraw extends View {
 
 
-    public Timetable(Context context) {
+    public TableDraw(Context context) {
         super(context);
     }
 
