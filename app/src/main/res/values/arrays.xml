@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="bigItem">
+        <item>인문대학</item>
+        <item>자연과학대학</item>
+        <item>법학대학</item>
+        <item>사회과학대학</item>
+        <item>경제통상대학</item>
+        <item>경영대</item>
+        <item>공과대학</item>
+        <item>IT대학</item>
+        <item>베어드학부대학</item>
+        <item>예술창작학부</item>
+        <item>스포츠학부</item>
+        <item>교양필수</item>
+        <item>교양선택</item>
+        <item>교직</item>
+        <item>평생교육사</item>
+        <item>일반선택</item>
+        <item>연계전공</item>
+    </string-array>
+
+    <string-array name="test">
+        <item>test</item>
+        <item>test</item>
+        <item>test</item>
+        <item>test</item>
+        <item>test</item>
+        <item>test</item>
+        <item>test</item>
+    </string-array>
+    
+    
+</resources>

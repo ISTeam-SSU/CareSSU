@@ -16,6 +16,12 @@
         <item name="colorControlActivated">#0097A7</item>
     </style>
 
+    <style name="TimeAddLayout" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimaryDark">#D32F2F</item>
+        <item name="colorAccent">#FFFF00</item>
+    </style>
+
     <style name="FabTheme">
         <item name="colorAccent">#00BCD4</item>
     </style>

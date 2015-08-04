@@ -15,7 +15,7 @@ public class Dao {
     public Dao(Context context) {
         this.context = context;
 
-        database = context.openOrCreateDatabase("test.db",SQLiteDatabase.CREATE_IF_NECESSARY, null);
+        database = context.openOrCreateDatabase(android.os.Environment.getExternalStorageDirectory()+"test.db",SQLiteDatabase.CREATE_IF_NECESSARY, null);
 
         try{
             String sql = "CREATE TABLE IF NOT EXISTS Timetable (Id integer not null," +
