@@ -24,7 +24,7 @@
         <Button
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:id="@+id/button"
+            android:id="@+id/bt_timeadd_done"
             android:background="@mipmap/ic_done_white"
             android:gravity="center_horizontal"
             android:layout_centerVertical="true"

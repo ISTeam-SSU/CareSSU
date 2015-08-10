@@ -4,18 +4,27 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.View;
+
+import com.lemonlab.ssuapp.Dao;
+import com.lemonlab.ssuapp.Model.Timetable;
+
+import java.util.ArrayList;
 
 /**
  * Created by lk on 2015. 7. 24..
  */
 public class TableDraw extends View {
 
+    private Context context;
 
     public TableDraw(Context context) {
         super(context);
+        this.context = context;
     }
 
     @Override
@@ -28,43 +37,52 @@ public class TableDraw extends View {
 
         System.out.println(h + "/" + w);
 
+        canvas.drawColor(Color.parseColor("#eeeeee")); //set clear
+
+        Dao database = new Dao(context);
+        ArrayList<Timetable> timetables = database.getTimetable();
+
         Paint paint = new Paint();
+        Paint paint_text = new Paint();
+        paint_text.setColor(Color.WHITE);
+        paint_text.setTextSize(20);
+        paint_text.setTextAlign(Paint.Align.CENTER);
 
         paint.setColor(Color.GRAY);
-        canvas.drawLine(0, ((float) (h / 14) * 0), w, ((float) (h / 14) * 0), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 1), w, ((float) (h / 14) * 1), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 2), w, ((float) (h / 14) * 2), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 3), w, ((float) (h / 14) * 3), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 4), w, ((float) (h / 14) * 4), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 5), w, ((float) (h / 14) * 5), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 6), w, ((float) (h / 14) * 6), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 7), w, ((float) (h / 14) * 7), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 8), w, ((float) (h / 14) * 8), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 9), w, ((float) (h / 14) * 9), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 10), w, ((float) (h / 14) * 10), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 11), w, ((float) (h / 14) * 11), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 12), w, ((float) (h / 14) * 12), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 13), w, ((float) (h / 14) * 13), paint);
-        canvas.drawLine(0, ((float) (h / 14) * 14), w, ((float) (h / 14) * 14), paint);
-        canvas.drawLine((float)(w / 6) * 0, 0, (float)(w / 6) * 0, h, paint);
-        canvas.drawLine((float)(w / 6) * 1, 0, (float)(w / 6) * 1, h, paint);
-        canvas.drawLine((float)(w / 6) * 2, 0, (float)(w / 6) * 2, h, paint);
-        canvas.drawLine((float)(w / 6) * 3, 0, (float)(w / 6) * 3, h, paint);
-        canvas.drawLine((float)(w / 6) * 4, 0, (float)(w / 6) * 4, h, paint);
-        canvas.drawLine((float)(w / 6) * 5, 0, (float)(w / 6) * 5, h, paint);
-        canvas.drawLine((float) (w / 6) * 6, 0, (float) (w / 6) * 6, h, paint);
+
+
+        for(int i=0; i<15; i++)
+            canvas.drawLine(0, ((float) (h / 14) * i), w, ((float) (h / 14) * i), paint);
+        for(int i=1; i<7; i++)
+            canvas.drawLine((float)(w / 6) * i, 0, (float)(w / 6) * i, h, paint);
 
 
 
-        paint.setColor(Color.parseColor("#F44336"));
-        RectF r1 = new RectF();
-        r1.set((w / 6) * 1, (int) ((float) (h / 14) * 0), (w / 6) * 1 + (w / 6), (int) (float) (h / 14) * 5);
-        canvas.drawRoundRect(r1, 10, 10, paint);
+        ArrayList<Integer> colorArrayList = new ArrayList<>();
+        colorArrayList.add(Color.parseColor("#A40A24"));
+        colorArrayList.add(Color.parseColor("#410539"));
+        colorArrayList.add(Color.parseColor("#F2EBCE"));
+        colorArrayList.add(Color.parseColor("#A59B91"));
+        colorArrayList.add(Color.parseColor("#F36152"));
+        colorArrayList.add(Color.parseColor("#0C274C"));
 
-        paint.setColor(Color.parseColor("#3F51B5"));
-        r1 = new RectF();
-        r1.set((w / 6) * 3, (int) ((float) (h / 14) * 3), (w / 6) * 3 + (w / 6), (int) (float) (h / 14) * 7);
-        canvas.drawRoundRect(r1, 10, 10, paint);
+
+        paint.setColor(Color.parseColor("#ff009f"));
+
+        for(int i=0; i<timetables.size(); i++){
+            Timetable timetable = timetables.get(i);
+            int time_count = timetable.getTime_count();
+            int[] time_week = timetable.getTime_week();
+            float[] time_start = timetable.getFtime_start();
+            float[] time_end = timetable.getFtime_end();
+            paint.setColor(colorArrayList.get(i));
+            for(int k=0; k<time_count; k++) {
+                RectF r1 = new RectF();
+                r1.set((w / 6) * time_week[k], (int) ((float) (h / 14) * (time_start[k] - 8)), ((w / 6) * time_week[k] + (w / 6)), (int) (float) (h / 14) * (time_end[k] - 8));
+                canvas.drawRoundRect(r1, 10, 10, paint);
+                canvas.drawText(timetable.getSubject(), (w / 6) * time_week[k] + (w / 12), (((int) ((float) (h / 14) * (time_start[k] - 8)))+((int) (float) (h / 14) * (time_end[k] - 8)))/2, paint_text);
+            }
+        }
 
 
     }

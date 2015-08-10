@@ -60,8 +60,9 @@ public class DaoTable {
                     cursor.getString(6),    //Time_start
                     cursor.getString(7),    //Time_end
                     cursor.getInt(8),       //time_count
-                    cursor.getString(9),    //Classroom
-                    cursor.getString(10));  //Student
+                    cursor.getString(9),    //Time_week
+                    cursor.getString(10),    //Classroom
+                    cursor.getString(11));  //Student
             cursor.moveToNext();
             tablelist.add(table);
         }
