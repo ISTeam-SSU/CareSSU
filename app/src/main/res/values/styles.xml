@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.Theme.SupportDesign"/>
+
+    <style name="Base.Theme.SupportDesign" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#ff9245</item>
+        <item name="colorPrimaryDark">#c67033</item>
+        <item name="colorAccent">#FFFF00</item>
+    </style>
+
+    <style name="MyTextInputLayoutTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">#0097A7</item>
+        <item name="colorControlNormal">#0097A7</item>
+        <item name="colorControlActivated">#0097A7</item>
+    </style>
+
+    <style name="TimeAddLayout" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimaryDark">#D32F2F</item>
+        <item name="colorAccent">#FFFF00</item>
+    </style>
+
+    <style name="FabTheme">
+        <item name="colorAccent">#00BCD4</item>
+    </style>
+
+</resources>
