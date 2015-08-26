@@ -2,12 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lemonlab.ssuapp" >
 
-    <uses-permission android:name=
-        "android.permission.INTERNET" />
-    <uses-permission android:name=
-        "android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name=
-        "android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -23,9 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.TimeAddActivity"
-            android:theme="@style/TimeAddLayout"
-            />
+        <activity
+            android:name=".View.TimeAddActivity"
+            android:theme="@style/TimeAddLayout" />
+        <activity
+            android:name=".ReadingRoomActivity"
+            android:label="@string/title_activity_reading_room" >
+        </activity>
     </application>
 
 </manifest>

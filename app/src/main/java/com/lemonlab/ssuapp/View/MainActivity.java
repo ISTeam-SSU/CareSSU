@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return new NotiFragment();
                 case 2:
-                    return new NotiFragment();
+                    return new LibraryFragment();
                 case 3:
                     return new NotiFragment();
             }

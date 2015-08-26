@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.isteam_open.library.ReadingRoomActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="7"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#ff000000"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_marginLeft="16dp"
+            android:textSize="16sp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="열람실"
+            android:id="@+id/readingTextView" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/readingimageButton"
+            android:layout_gravity="right"
+            android:src="@android:drawable/stat_notify_sync" />
+
+    </LinearLayout>
+
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/readingwebView"/>
+</LinearLayout>
