@@ -25,6 +25,8 @@ import com.lemonlab.ssuapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final long FINISH_INTERVAL_TIME = 2000;
+    private long backPressedTime = 0;
     DrawerLayout drawer;
     TabLayout tab;
 
@@ -70,6 +72,20 @@ public class MainActivity extends AppCompatActivity {
 
         //DaoTable t = new DaoTable(MainActivity.this);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        long tempTIme = System.currentTimeMillis();
+        long intervalTime = tempTIme - backPressedTime;
+
+        if(0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed();
+        }
+        else{
+            backPressedTime = tempTIme;
+            Toast.makeText(getApplicationContext(), "'뒤로'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
