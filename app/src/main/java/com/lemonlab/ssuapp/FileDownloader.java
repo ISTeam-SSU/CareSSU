@@ -1,9 +1,6 @@
 package com.lemonlab.ssuapp;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -71,7 +68,6 @@ public class FileDownloader {
 //                Log.i("FileDown", "Success");
 //            }
 //        });
-
     }
 
 }

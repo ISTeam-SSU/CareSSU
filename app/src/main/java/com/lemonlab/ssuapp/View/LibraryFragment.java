@@ -130,6 +130,5 @@ public class LibraryFragment extends Fragment {
             }
         });
         queue.add(libraryRequest);
-
     }
 }
