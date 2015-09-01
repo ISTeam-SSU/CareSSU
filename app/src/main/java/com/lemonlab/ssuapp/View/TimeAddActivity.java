@@ -9,21 +9,20 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.lemonlab.ssuapp.BigItemListAdapter;
+import com.lemonlab.ssuapp.Adapter.BigItemListAdapter;
 import com.lemonlab.ssuapp.Dao;
 import com.lemonlab.ssuapp.DaoTable;
 import com.lemonlab.ssuapp.Model.Timetable;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.Model.SsuSubject;
 import com.lemonlab.ssuapp.Request.JSONArrayRequest;
-import com.lemonlab.ssuapp.SmallItemListAdapter;
+import com.lemonlab.ssuapp.Adapter.SmallItemListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

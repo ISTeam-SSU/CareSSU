@@ -25,7 +25,7 @@
             android:name=".View.TimeAddActivity"
             android:theme="@style/TimeAddLayout" />
         <activity
-            android:name=".ReadingRoomActivity"
+            android:name=".View.ReadingRoomActivity"
             android:label="@string/title_activity_reading_room" >
         </activity>
     </application>

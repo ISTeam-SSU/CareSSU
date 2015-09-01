@@ -1,4 +1,4 @@
-package com.lemonlab.ssuapp;
+package com.lemonlab.ssuapp.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.lemonlab.ssuapp.Model.Timetable;
+import com.lemonlab.ssuapp.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.lemonlab.ssuapp;
+package com.lemonlab.ssuapp.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.lemonlab.ssuapp.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

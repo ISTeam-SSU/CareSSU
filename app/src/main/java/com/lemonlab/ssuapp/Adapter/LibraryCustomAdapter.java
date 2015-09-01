@@ -1,4 +1,4 @@
-package com.lemonlab.ssuapp;
+package com.lemonlab.ssuapp.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.lemonlab.ssuapp.R;
 
 import java.util.ArrayList;
 
