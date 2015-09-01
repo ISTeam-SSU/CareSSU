@@ -23,7 +23,7 @@ import com.lemonlab.ssuapp.R;
 /**
  * Created by lk on 2015. 7. 23..
  */
-public class TimeFragment extends Fragment implements test{
+public class TimeFragment extends Fragment{
     TableDraw mp;
     public TimeFragment(){
         super();

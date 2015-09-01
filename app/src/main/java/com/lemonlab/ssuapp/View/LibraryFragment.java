@@ -18,7 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.lemonlab.ssuapp.LibraryCustomAdapter;
-import com.lemonlab.ssuapp.LibraryRequest;
+import com.lemonlab.ssuapp.Request.LibraryRequest;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.ReadingRoomActivity;
 

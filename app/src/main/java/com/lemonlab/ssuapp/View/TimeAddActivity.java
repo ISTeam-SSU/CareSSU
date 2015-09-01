@@ -1,27 +1,36 @@
 package com.lemonlab.ssuapp.View;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.lemonlab.ssuapp.BigItemListAdapter;
 import com.lemonlab.ssuapp.Dao;
 import com.lemonlab.ssuapp.DaoTable;
 import com.lemonlab.ssuapp.Model.Timetable;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.Model.SsuSubject;
+import com.lemonlab.ssuapp.Request.JSONArrayRequest;
 import com.lemonlab.ssuapp.SmallItemListAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by lk on 2015. 8. 3..
@@ -29,6 +38,7 @@ import java.util.ArrayList;
 public class TimeAddActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Timetable timetable;
+    private SmallItemListAdapter m_Adapter3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +74,8 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
                         String smallitem = (String) listView.getAdapter().getItem(position);
                         titleText.setText(bigitem + " > " + smallitem);
                         Log.i("fffffff", smallitem + "" + s.getCode(bigitem, smallitem));
-                        DaoTable daoTable = new DaoTable(getApplicationContext());
-                        arrayList = daoTable.getTimetable(s.getCode(bigitem, smallitem));
-                        SmallItemListAdapter m_Adapter3 = new SmallItemListAdapter(arrayList, 3);
+                        arrayList = getTimetable(s.getCode(bigitem, smallitem));
+                        m_Adapter3 = new SmallItemListAdapter(arrayList, 3);
                         listView.setAdapter(m_Adapter3);
                         break;
                     case 3:
@@ -93,5 +102,50 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
         Dao database = new Dao(getApplicationContext());
         Log.i("insert result" , database.insertTable(timetable)+"");
         finish();
+    }
+
+    public ArrayList<Timetable> getTimetable(int id){
+        final ArrayList<Timetable> tablelist = new ArrayList<>();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        HashMap<String, String> request = new HashMap<>();
+        request.put("url", "http://lemonlab.co.kr/ssu/timetable.php?id="+id);
+        request.put("model", Request.Method.GET+"");
+        request.put("token", "");
+
+        JSONArrayRequest timetableRequest = JSONArrayRequest.request(request, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for(int i=0; i<response.length(); i++) {
+                    try {
+                        JSONObject data = response.getJSONObject(i);
+                        Timetable table = new Timetable(
+                                data.getInt("id"),
+                                data.getString("division"),    //Division
+                                data.getString("subject"),    //Subject
+                                data.getString("teacher"),    //Teacher
+                                data.getInt("grade"),       //Grade
+                                data.getString("time"),    //Time String
+                                data.getString("time_start"),    //Time_start
+                                data.getString("time_end"),    //Time_end
+                                data.getInt("time_count"),       //time_count
+                                data.getString("time_week"),    //Time_week
+                                data.getString("classroom"),    //Classroom
+                                data.getString("student"));  //Student
+                        tablelist.add(table);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                m_Adapter3.notifyDataSetChanged();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        queue.add(timetableRequest);
+        return tablelist;
     }
 }
