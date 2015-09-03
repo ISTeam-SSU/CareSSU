@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by ISTeam_Open on 2015-08-26.
  */
-public class LibraryRequest extends Request<String> {
+public class  LibraryRequest extends Request<String> {
 
     private Response.Listener<String> listener;
 

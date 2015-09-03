@@ -84,6 +84,8 @@ public class LibraryFragment extends Fragment {
                     intent.putExtra("Url", "http://203.253.28.47/seat/roomview5.asp?room_no=" + (position + 1));
                     startActivity(intent);
                 }
+                else
+                    Toast.makeText(getActivity(), "ㅇㅅㅇ;;", Toast.LENGTH_SHORT).show();
             }
         });
     }

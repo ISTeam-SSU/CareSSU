@@ -106,7 +106,8 @@ public class CheckDB {
     private static void DialogUpdate(){
         dialog.dismiss();
         AlertDialog.Builder updateck = new AlertDialog.Builder(context);
-        updateck.setMessage("시간표 데이터를 업데이트해야합니다.").setCancelable(false).setPositiveButton("수락", new DialogInterface.OnClickListener() {
+        updateck.setMessage("시간표 데이터를 업데이트해야합니다.").setCancelable(false).setPositiveButton("수락",
+                new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 UpdateProgress();
                 FileDownloader fileDownloader = new FileDownloader(context, lastModified);
