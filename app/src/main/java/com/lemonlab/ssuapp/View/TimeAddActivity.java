@@ -17,7 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.lemonlab.ssuapp.Adapter.BigItemListAdapter;
 import com.lemonlab.ssuapp.Dao;
-import com.lemonlab.ssuapp.DaoTable;
 import com.lemonlab.ssuapp.Model.Timetable;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.Model.SsuSubject;
@@ -45,7 +44,6 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_timeadd);
 
         final SsuSubject s = new SsuSubject();
-        DaoTable t = new DaoTable(TimeAddActivity.this);
 
         final ListView listView = (ListView) findViewById(R.id.lv_timeadd_list);
         final BigItemListAdapter m_Adapter = new BigItemListAdapter(getResources().getStringArray(R.array.bigItem),1);
