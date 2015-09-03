@@ -14,10 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-import com.lemonlab.ssuapp.CheckDB;
-import com.lemonlab.ssuapp.FileDownloader;
 import com.lemonlab.ssuapp.R;
 
 /**
@@ -76,13 +72,6 @@ public class TimeFragment extends Fragment{
                 //intent.putExtra("draw",mp);
                 startActivity(intent);
                 break;
-            case R.id.action_refreshtime:
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getView().getContext());
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putLong("savedDBTime", 0);
-                editor.commit();
-                CheckDB checkDB = new CheckDB(getView().getContext(),"http://lemonlab.co.kr/ssu/test.db","test.db");
-                checkDB.ckDB();
         }
         return super.onOptionsItemSelected(item);
     }
