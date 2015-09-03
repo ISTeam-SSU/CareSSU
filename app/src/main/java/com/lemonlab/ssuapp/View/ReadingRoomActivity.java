@@ -1,4 +1,4 @@
-package com.lemonlab.ssuapp;
+package com.lemonlab.ssuapp.View;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.lemonlab.ssuapp.R;
 
 public class ReadingRoomActivity extends AppCompatActivity {
 

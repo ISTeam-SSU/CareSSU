@@ -16,10 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.lemonlab.ssuapp.CheckDB;
-import com.lemonlab.ssuapp.Dao;
-import com.lemonlab.ssuapp.DaoTable;
-import com.lemonlab.ssuapp.FileDownloader;
 import com.lemonlab.ssuapp.R;
 
 
@@ -65,12 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         tab = (TabLayout) findViewById(R.id.tabs);
         tab.setupWithViewPager(vpPager);
-
-        CheckDB checkDB = new CheckDB(MainActivity.this,"http://lemonlab.co.kr/ssu/test.db","test.db");
-        checkDB.ckDB();
-
-
-        //DaoTable t = new DaoTable(MainActivity.this);
 
     }
 
