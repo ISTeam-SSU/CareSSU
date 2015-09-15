@@ -2,14 +2,19 @@ package com.lemonlab.ssuapp.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lemonlab.ssuapp.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +38,6 @@ public class LibraryCustomAdapter extends BaseAdapter {
         return titleList.size();
     }
 
-
     public Object getItem(int position) {
         return titleList.get(position);
     }
@@ -42,7 +46,6 @@ public class LibraryCustomAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
-
 
     public View getView(int position, View convertView, ViewGroup parent) {
         if(inflater == null){
@@ -56,6 +59,7 @@ public class LibraryCustomAdapter extends BaseAdapter {
 
         TextView textView2 = (TextView)convertView.findViewById(R.id.textView2);
         textView2.setText(contextList.get(position));
+
         return convertView;
     }
 }

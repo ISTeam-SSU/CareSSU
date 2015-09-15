@@ -1,6 +1,7 @@
 package com.lemonlab.ssuapp.View;
 
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,11 +18,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.lemonlab.ssuapp.Adapter.BigItemListAdapter;
 import com.lemonlab.ssuapp.Dao;
+import com.lemonlab.ssuapp.DaoTable;
 import com.lemonlab.ssuapp.Model.Timetable;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.Model.SsuSubject;
-import com.lemonlab.ssuapp.Request.JSONArrayRequest;
 import com.lemonlab.ssuapp.Adapter.SmallItemListAdapter;
+import com.lemonlab.ssuapp.Request.JSONArrayRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,7 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
 
     private Timetable timetable;
     private SmallItemListAdapter m_Adapter3;
+    Vibrator vibe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
 
         final RelativeLayout v = (RelativeLayout) findViewById(R.id.timetable);
 
+        vibe = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+
         listView.setAdapter(m_Adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -59,6 +64,7 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                vibe.vibrate(15);
                 Log.i("test", Integer.parseInt(String.valueOf(listView.getAdapter())) + "");
                 switch (Integer.parseInt(String.valueOf(listView.getAdapter()))) {
                     case 1:
@@ -97,6 +103,7 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         Dao database = new Dao(getApplicationContext());
+        vibe.vibrate(15);
         Log.i("insert result" , database.insertTable(timetable)+"");
         finish();
     }

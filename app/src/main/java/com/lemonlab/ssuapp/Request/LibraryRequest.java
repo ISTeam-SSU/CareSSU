@@ -1,7 +1,5 @@
 package com.lemonlab.ssuapp.Request;
 
-import android.util.Log;
-
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -13,7 +11,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by ISTeam_Open on 2015-08-26.
  */
-public class LibraryRequest extends Request<String> {
+public class  LibraryRequest extends Request<String> {
 
     private Response.Listener<String> listener;
 

@@ -3,4 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_addtime" android:title="시간표 추가"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_refreshtime" android:title="시간표 데이터 업데이트"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

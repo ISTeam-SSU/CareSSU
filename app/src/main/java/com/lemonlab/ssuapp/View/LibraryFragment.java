@@ -1,7 +1,9 @@
 package com.lemonlab.ssuapp.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -38,6 +40,9 @@ public class LibraryFragment extends Fragment {
     private ArrayList<String> contextList = new ArrayList<>();
     private LibraryCustomAdapter listAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    Vibrator vibe;
+
     final String[] name = new String[]{"제 1열람실", "제 2열람실", "제 3열람실", "제 4열람실", "제 5열람실", "대학원열람실", "박사과정열람실", "제 6열람실",""};
 
     public LibraryFragment(){
@@ -53,6 +58,7 @@ public class LibraryFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        vibe = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
         listView = (ListView) view.findViewById(R.id.listView1);
         listAdapter = new LibraryCustomAdapter(getActivity(), titleList, contextList);
         listView.setAdapter(listAdapter);
@@ -70,6 +76,8 @@ public class LibraryFragment extends Fragment {
                         swipeRefreshLayout.setEnabled(true);
                         swipeRefreshLayout.setRefreshing(true);
                         initList();
+                        vibe.vibrate(15);
+                        Toast.makeText(getActivity(), "새로고침 되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -79,6 +87,7 @@ public class LibraryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position < 8) {
+                    vibe.vibrate(15);
                     intent.putExtra("name", name[position]);
                     intent.putExtra("Url", "http://203.253.28.47/seat/roomview5.asp?room_no=" + (position + 1));
                     startActivity(intent);
@@ -116,8 +125,6 @@ public class LibraryFragment extends Fragment {
                 titleList.add("대학원열람실");
                 titleList.add("박사과정열람실");
                 titleList.add("제 6열람실");
-                titleList.add("");
-                contextList.add("");
                 listAdapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
