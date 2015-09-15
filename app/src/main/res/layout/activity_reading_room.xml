@@ -13,11 +13,12 @@
         android:background="#ff9245"
         android:layout_gravity="center_horizontal">
 
-        <ImageView
+        <ImageButton
             android:layout_marginLeft="16dp"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:id="@+id/backButton"
+            android:background="#00ffffff"
             android:layout_gravity="center"
             android:src="@drawable/ic_arrow_back" />
 

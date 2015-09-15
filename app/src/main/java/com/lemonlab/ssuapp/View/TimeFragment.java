@@ -12,8 +12,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
+
 import com.lemonlab.ssuapp.R;
 
 /**
@@ -21,6 +21,7 @@ import com.lemonlab.ssuapp.R;
  */
 public class TimeFragment extends Fragment{
     TableDraw mp;
+    private View capture;
     public TimeFragment(){
         super();
     }
@@ -39,6 +40,8 @@ public class TimeFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
         RelativeLayout v = (RelativeLayout) view.findViewById(R.id.timetable);
+        capture = view.findViewById(R.id.timetable_container);
+
 //        Button bt = (Button) view.findViewById(R.id.button);
 //        bt.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -74,10 +77,6 @@ public class TimeFragment extends Fragment{
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void test(){
-
     }
 
 }

@@ -11,13 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-<<<<<<< HEAD:app/src/main/java/com/lemonlab/ssuapp/LibraryCustomAdapter.java
-import java.io.IOException;
-import java.io.InputStream;
-=======
 import com.lemonlab.ssuapp.R;
 
->>>>>>> 3f2eba8d06b70a3857509192b7f5cb26d16fcfaa:app/src/main/java/com/lemonlab/ssuapp/Adapter/LibraryCustomAdapter.java
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
