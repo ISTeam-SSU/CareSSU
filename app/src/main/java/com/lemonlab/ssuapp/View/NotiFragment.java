@@ -12,7 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.lemonlab.ssuapp.Model.Notification;
 import com.lemonlab.ssuapp.R;
+import com.lemonlab.ssuapp.Request.Notification_parser;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,9 @@ import java.util.ArrayList;
 public class NotiFragment extends Fragment {
     ListView listView;
     ArrayList<String> arrayList;
+    ArrayList<Notification> arrayList2;
     ArrayAdapter<String> adapter;
+    ArrayAdapter<Notification> adapter2;
     int depth = 0;
 
     public NotiFragment() {
@@ -65,10 +69,13 @@ public class NotiFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (depth == 0) {
-                    arrayList = getList(i); // TODO i에 맞게 새 데이터를 가져와서 리스트 뷰에 뿌려주세요.
-                    adapter.notifyDataSetChanged();
+                    Notification_parser myParser = new Notification_parser();
+                    arrayList2 = myParser.getPaseResult(arrayList.get(i));
+
+                    adapter2 = new ArrayAdapter<Notification>(view.getContext(), android.R.layout.simple_list_item_2);
+                    listView.setAdapter();
                     depth = 1;
-                }else if(depth == 1){
+                } else if (depth == 1) {
                     //TODO 웹뷰 기능 여기다가 추가해주삼.
                 }
             }
