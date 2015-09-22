@@ -3,12 +3,14 @@ package com.lemonlab.ssuapp.View;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.lemonlab.ssuapp.R;
 
@@ -21,6 +23,7 @@ public class NotiFragment extends Fragment {
     ListView listView;
     ArrayList<String> arrayList;
     ArrayAdapter<String> adapter;
+    int depth = 0;
 
     public NotiFragment() {
         super();
@@ -44,7 +47,7 @@ public class NotiFragment extends Fragment {
         arrayList.add("학사");
         arrayList.add("장학");
         arrayList.add("국제교류");
-        arrayList.add("모집,채용");
+        arrayList.add("모집·채용");
         arrayList.add("교내행사");
         arrayList.add("교외행사");
         arrayList.add("봉사");
@@ -58,12 +61,17 @@ public class NotiFragment extends Fragment {
         listView.setAdapter(adapter);
 
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (depth == 0) {
+                    arrayList = getList(i); // TODO i에 맞게 새 데이터를 가져와서 리스트 뷰에 뿌려주세요.
+                    adapter.notifyDataSetChanged();
+                    depth = 1;
+                }else if(depth == 1){
+                    //TODO 웹뷰 기능 여기다가 추가해주삼.
+                }
+            }
+        });
     }
-
-    private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            
-        }
-    };
 }

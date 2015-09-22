@@ -31,7 +31,6 @@ public class TableDraw extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
         int h = getHeight();
         int w = getWidth();
 
