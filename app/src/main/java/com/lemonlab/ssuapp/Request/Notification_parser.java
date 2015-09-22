@@ -1,5 +1,6 @@
 package com.lemonlab.ssuapp.Request;
 
+import android.util.Log;
 import android.webkit.URLUtil;
 
 import com.android.volley.NetworkResponse;
@@ -25,22 +26,12 @@ import javax.xml.transform.Source;
  */
 public class Notification_parser {
 
-    private static String SERVER_URL = "http://m.ssu.ac.kr/html/themes/m/html/notice_univ_list.jsp?sCategory=";
 
-    private static String getURL4Noti(String param){
-        String myURL = new String();
-        if(param.equals("전체")){
-            myURL = "http://m.ssu.ac.kr/html/themes/m/html/notice_univ_list.jsp";
-        }
-        else{
-            myURL = SERVER_URL + param;
-        }
-        return myURL;
-    }
     public ArrayList<Notification> getPaseResult(String param) {
-        ArrayList<Notification> arrayList = new ArrayList<Notification>();
+        ArrayList<Notification> arrayList = new ArrayList<>();
+        Log.i("Parse", "트라이 ");
         try {
-            Document doc = Jsoup.connect(getURL4Noti(param)).get();
+            Document doc = Jsoup.parse(param);
             Elements lists = doc.select(".first-child");
             for (Element e:lists){
                 Notification notification = new Notification();
@@ -51,11 +42,13 @@ public class Notification_parser {
                 notification.setTitle(title);
                 notification.setUrl(url);
                 arrayList.add(notification);
+                Log.i("parse", notification.toString());
             }
             return arrayList;
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
+        Log.i("Parse", "널 ");
         return null;
     }
 }

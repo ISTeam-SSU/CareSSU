@@ -28,6 +28,15 @@ public class Notification {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "Notification{" +
+                "title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
+
     public void setDate(String date) {
         this.date = date;
     }
