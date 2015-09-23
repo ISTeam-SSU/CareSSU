@@ -35,9 +35,12 @@ public class Notification_parser {
             Elements lists = doc.select(".first-child");
             for (Element e:lists){
                 Notification notification = new Notification();
-                String url = e.attr("href");
-                String title = e.tagName("a").text();
-                String date = e.tagName("span").text();
+                Elements urlE = e.select("a[href]");
+                //String url = e.attr("href");
+                String url = urlE.attr("href");
+                String title = urlE.text();
+                Elements dateE = e.select("span");
+                String date = dateE.text();
                 notification.setDate(date);
                 notification.setTitle(title);
                 notification.setUrl(url);
