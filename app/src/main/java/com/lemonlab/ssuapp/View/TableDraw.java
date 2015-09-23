@@ -36,7 +36,7 @@ public class TableDraw extends View {
 
         System.out.println(h + "/" + w);
 
-        canvas.drawColor(Color.parseColor("#eeeeee")); //set clear
+        canvas.drawColor(Color.parseColor("#ffffff")); //set clear
 
         Dao database = new Dao(context);
         ArrayList<Timetable> timetables = database.getTimetable();

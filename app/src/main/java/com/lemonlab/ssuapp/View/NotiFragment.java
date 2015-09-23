@@ -1,5 +1,6 @@
 package com.lemonlab.ssuapp.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -95,9 +96,11 @@ public class NotiFragment extends Fragment {
                     }
                 });
                 queue.add(noti);
-                    //adapter2 = new ArrayAdapter<Notification>(view.getContext(), android.R.layout.simple_list_item_2);
-
                 } else if (depth == 1) {
+                    Intent intent = new Intent(getActivity(), ReadingRoomActivity.class);
+                    intent.putExtra("name", arrayList2.get(i).getTitle());
+                    intent.putExtra("Url", "http://m.ssu.ac.kr"+arrayList2.get(i).getUrl());
+                    startActivity(intent);
                     //TODO 웹뷰 기능 여기다가 추가해주삼.
                 }
             }
