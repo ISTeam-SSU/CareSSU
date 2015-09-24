@@ -70,11 +70,12 @@ public class ReadingRoomActivity extends AppCompatActivity implements View.OnCli
 
     final class WebBrowserClient extends WebViewClient {
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view,String url){
+        public boolean shouldOverrideUrlLoading(WebView view,String url) {
             view.loadUrl(url);
-            Log.d("webview",url);
+            Log.d("webview", url);
             return true;
         }
+
         @Override
         public void onLoadResource(WebView view, String url) {
             Log.d("webview", "webview remove js");
