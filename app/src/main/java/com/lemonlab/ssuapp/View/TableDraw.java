@@ -21,10 +21,21 @@ import java.util.ArrayList;
 public class TableDraw extends View {
 
     private Context context;
-
+    int fontSize = 20;
+    int margin = 5;
     public TableDraw(Context context) {
         super(context);
         this.context = context;
+    }
+
+    private int calculateWidthFromFontSize(String testString,
+                                           int currentSize) {
+        Rect bounds = new Rect();
+        Paint paint = new Paint();
+        paint.setTextSize(currentSize);
+        paint.getTextBounds(testString, 0, testString.length(), bounds);
+
+        return (int) Math.ceil(bounds.width());
     }
 
     @Override
@@ -79,10 +90,22 @@ public class TableDraw extends View {
                 RectF r1 = new RectF();
                 r1.set((w / 6) * time_week[k], (int) ((float) (h / 14) * (time_start[k] - 8)), ((w / 6) * time_week[k] + (w / 6)), (int) (float) (h / 14) * (time_end[k] - 8));
                 canvas.drawRoundRect(r1, 10, 10, paint);
-                canvas.drawText(timetable.getSubject(), (w / 6) * time_week[k] + (w / 12), (((int) ((float) (h / 14) * (time_start[k] - 8)))+((int) (float) (h / 14) * (time_end[k] - 8)))/2, paint_text);
+                String outputStr = new String();
+                String str[] = timetable.getSubject().split(" ");
+                if (calculateWidthFromFontSize(timetable.getSubject(), fontSize) >= r1
+                        .width() - margin * 2) {
+                    for(int strsize = 0 ; strsize < str.length; strsize++){
+                        outputStr += str[strsize]+"\n";
+                    }
+                    Log.d("timetable", "resize font");
+                    Log.d("timetable", outputStr);
+                }
+                else{
+                    outputStr = timetable.getSubject();
+                }
+                canvas.drawText(outputStr, (w / 6) * time_week[k] + (w / 12), (((int) ((float) (h / 14) * (time_start[k] - 8)))+((int) (float) (h / 14) * (time_end[k] - 8)))/2, paint_text);
             }
         }
-
 
     }
 }
