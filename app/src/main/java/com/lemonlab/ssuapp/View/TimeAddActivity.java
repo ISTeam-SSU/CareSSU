@@ -18,7 +18,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.lemonlab.ssuapp.Adapter.BigItemListAdapter;
 import com.lemonlab.ssuapp.Dao;
-import com.lemonlab.ssuapp.DaoTable;
 import com.lemonlab.ssuapp.Model.Timetable;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.Model.SsuSubject;
@@ -40,6 +39,7 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
     private Timetable timetable;
     private SmallItemListAdapter m_Adapter3;
     Vibrator vibe;
+    TempDraw td;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
                         TableDraw mp = new TableDraw(getApplicationContext());
                         v.addView(mp);
                         timetable = arrayList.get(position);
-                        TempDraw td = new TempDraw(getApplicationContext(), timetable.getFtime_start(), timetable.getFtime_end(), timetable.getTime_count(), timetable.getTime_week());
+                        td = new TempDraw(getApplicationContext(), timetable.getFtime_start(), timetable.getFtime_end(), timetable.getTime_count(), timetable.getTime_week());
                         v.addView(td);
 
                 }
@@ -104,6 +104,7 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         Dao database = new Dao(getApplicationContext());
         vibe.vibrate(15);
+        timetable.setColor(td.getColor());
         Log.i("insert result" , database.insertTable(timetable)+"");
         finish();
     }
@@ -136,7 +137,8 @@ public class TimeAddActivity extends AppCompatActivity implements View.OnClickLi
                                 data.getInt("time_count"),       //time_count
                                 data.getString("time_week"),    //Time_week
                                 data.getString("classroom"),    //Classroom
-                                data.getString("student"));  //Student
+                                data.getString("student"),
+                                "");  //Student
                         tablelist.add(table);
                     } catch (JSONException e) {
                         e.printStackTrace();

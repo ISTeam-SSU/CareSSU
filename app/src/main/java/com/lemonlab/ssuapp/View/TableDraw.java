@@ -74,7 +74,7 @@ public class TableDraw extends View {
             int[] time_week = timetable.getTime_week();
             float[] time_start = timetable.getFtime_start();
             float[] time_end = timetable.getFtime_end();
-            paint.setColor(colorArrayList.get(i));
+            paint.setColor(Color.parseColor(timetable.getColor()));
             for(int k=0; k<time_count; k++) {
                 RectF r1 = new RectF();
                 r1.set((w / 6) * time_week[k], (int) ((float) (h / 14) * (time_start[k] - 8)), ((w / 6) * time_week[k] + (w / 6)), (int) (float) (h / 14) * (time_end[k] - 8));

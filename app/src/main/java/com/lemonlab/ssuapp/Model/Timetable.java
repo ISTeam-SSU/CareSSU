@@ -21,11 +21,12 @@ public class Timetable {
     private String time_week[];
     private String classroom;
     private String student;
+    private String color;
 
 
 
 
-    public Timetable(int id, String division, String subject, String teacher, int grade, String time, String ftime_start, String ftime_end, int time_count, String time_week, String classroom, String student) {
+    public Timetable(int id, String division, String subject, String teacher, int grade, String time, String ftime_start, String ftime_end, int time_count, String time_week, String classroom, String student, String color) {
         this.id = id;
         this.division = division;
         this.subject = subject;
@@ -43,6 +44,7 @@ public class Timetable {
         this.time_end = ftime_end.split("/");
 
         this.time_week = time_week.split("/");
+        this.color = color;
     }
 
     public int getSubjectId() {
@@ -96,4 +98,8 @@ public class Timetable {
     public String getStudent() {
         return student;
     }
+
+    public String getColor() { return color; }
+
+    public void setColor(String color) { this.color = color; return;}
 }

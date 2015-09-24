@@ -34,7 +34,8 @@ public class Dao {
                     + "Time_count int,"
                     + "Time_week text,"
                     + "Classroom text,"
-                    + "Student text);";
+                    + "Student text,"
+                    + "Color text);";
             database.execSQL(sql);
         }catch(Exception e){
             Log.e("DAO","CREATE TABLE FAILED! -" + e);
@@ -58,7 +59,8 @@ public class Dao {
                     cursor.getInt(8),       //time_count
                     cursor.getString(9),    //Time_week
                     cursor.getString(10),    //Classroom
-                    cursor.getString(11));  //Student
+                    cursor.getString(11),  //Student
+                    cursor.getString(12));
             cursor.moveToNext();
             tablelist.add(table);
         }
@@ -81,10 +83,10 @@ public class Dao {
 
 
         String sql = "INSERT INTO Timetable (Id, Division, Subject, Teacher, Grade, Time, Time_start, Time_end," +
-                "Time_count, Time_week, Classroom, Student)" +
+                "Time_count, Time_week, Classroom, Student, Color)" +
                 "VALUES (" + timetable.getSubjectId() + ",'" + timetable.getDivision() + "','" + timetable.getSubject() + "','" +timetable.getTeacher() +
                 "'," + timetable.getGrade() + ",'" + timetable.getTime() + "','" + time_start + "','" + time_end +
-                "'," + timetable.getTime_count() + ",'" + time_week + "','" + timetable.getClassroom() + "','" + timetable.getStudent()+"');";
+                "'," + timetable.getTime_count() + ",'" + time_week + "','" + timetable.getClassroom() + "','" + timetable.getStudent()+"', '"+timetable.getColor()+"');";
         try {
             database.execSQL(sql);
             return true;
