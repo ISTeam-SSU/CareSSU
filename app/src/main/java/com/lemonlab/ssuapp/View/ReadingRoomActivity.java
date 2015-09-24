@@ -68,7 +68,6 @@ public class ReadingRoomActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-
     final class WebBrowserClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view,String url){
