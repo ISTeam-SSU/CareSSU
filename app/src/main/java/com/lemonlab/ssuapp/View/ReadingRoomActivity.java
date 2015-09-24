@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,13 +43,15 @@ public class ReadingRoomActivity extends AppCompatActivity implements View.OnCli
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
 
-        webView.setWebChromeClient(new WebBrowserClient());
+        webView.setWebViewClient(new WebBrowserClient());
         webView.getSettings().setDefaultTextEncodingName("Euc-kr");
+        webView.getSettings().setJavaScriptEnabled(true);
 
         webView.loadUrl(intent.getStringExtra("Url"));
 
         imageButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
+
     }
 
     @Override
@@ -65,10 +69,22 @@ public class ReadingRoomActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-    final class WebBrowserClient extends WebChromeClient {
-        public boolean onJsAlert(WebView view, String url, String message, JsResult result){
-            result.confirm();
-            return  true;
+    final class WebBrowserClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view,String url){
+            view.loadUrl(url);
+            Log.d("webview",url);
+            return true;
+        }
+        @Override
+        public void onLoadResource(WebView view, String url) {
+            Log.d("webview", "webview remove js");
+            view.loadUrl("javascript:var div  = document.getElementById('header'); div.parentNode.removeChild(div);");
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            Log.d("webview", "webview loaded");
         }
     }
 }

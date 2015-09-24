@@ -17,18 +17,21 @@
         android:weightSum="0.9"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/studnet_cafe"
             android:layout_margin="8dp"
             android:layout_weight="0.3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/book"/>
         <ImageView
+            android:id="@+id/snack_food"
             android:layout_margin="8dp"
             android:layout_weight="0.3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/book"/>
         <ImageView
+            android:id="@+id/employee"
             android:layout_margin="8dp"
             android:layout_weight="0.3"
             android:layout_width="wrap_content"
