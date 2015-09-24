@@ -80,6 +80,7 @@ public class ReadingRoomActivity extends AppCompatActivity implements View.OnCli
         public void onLoadResource(WebView view, String url) {
             Log.d("webview", "webview remove js");
             view.loadUrl("javascript:var div  = document.getElementById('header'); div.parentNode.removeChild(div);");
+            view.loadUrl("javascript:var div  = document.getElementById('bbs-prevnext'); div.parentNode.removeChild(div);");
             view.loadUrl("javascript:var div  = document.getElementById('footer'); div.parentNode.removeChild(div);");
         }
 
