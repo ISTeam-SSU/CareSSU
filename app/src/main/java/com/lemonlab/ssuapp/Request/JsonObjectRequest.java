@@ -9,24 +9,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 
-import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by lk on 2015. 9. 1..
+ * Created by lk on 2015. 9. 25..
  */
-public class JSONArrayRequest extends Request<JSONArray> {
+
+public class JsonObjectRequest extends Request<JSONObject> {
 
     private String token;
-    private Response.Listener<JSONArray> listener;
+    private Response.Listener<JSONObject> listener;
     private Map<String, String> mParams;
 
-    private JSONArrayRequest(HashMap<String, String> request, Response.Listener<JSONArray> successListener, Response.ErrorListener errorListener) {
-
+    public JsonObjectRequest(HashMap<String, String> request, Response.Listener<JSONObject> successListener, Response.ErrorListener errorListener) {
         super(Integer.parseInt(request.get("model")), request.get("url"), errorListener);
         this.token = request.get("token");
         listener = successListener;
@@ -40,22 +40,16 @@ public class JSONArrayRequest extends Request<JSONArray> {
         }else{
             mParams = new HashMap<>();
         }
-
-    }
-
-    public static JSONArrayRequest request(HashMap<String, String> request, Response.Listener<JSONArray> successListener, Response.ErrorListener errorListener) {
-        return new JSONArrayRequest(request, successListener, errorListener);
     }
 
     @Override
-    protected Response<JSONArray> parseNetworkResponse(NetworkResponse response) {
+    protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
         try {
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers));
 
-            jsonString = jsonString.replace("{\"itemScores\":","").replace("]}","]");
-            Log.i("jjj", HttpHeaderParser.parseCharset(response.headers) + "" + jsonString);
-             return Response.success(new JSONArray(jsonString), HttpHeaderParser.parseCacheHeaders(response));
+            return Response.success(new JSONObject(jsonString),
+                    HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             return Response.error(new VolleyError(e));
@@ -66,7 +60,7 @@ public class JSONArrayRequest extends Request<JSONArray> {
     }
 
     @Override
-    protected void deliverResponse(JSONArray response) {
+    protected void deliverResponse(JSONObject response) {
         listener.onResponse(response);
     }
 
@@ -74,5 +68,10 @@ public class JSONArrayRequest extends Request<JSONArray> {
         Map params = new HashMap();
         params.put("Authorization", "Bearer " + token);
         return params;
+    }
+
+    @Override
+    protected Map<String, String> getParams() throws AuthFailureError {
+        return mParams;
     }
 }

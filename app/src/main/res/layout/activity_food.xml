@@ -55,7 +55,7 @@
             android:text="more"/>
 
     </RelativeLayout>
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:layout_margin="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
