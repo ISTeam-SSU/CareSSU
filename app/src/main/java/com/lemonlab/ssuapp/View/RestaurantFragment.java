@@ -23,6 +23,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.lemonlab.ssuapp.Adapter.RestaurantListAdapter;
+import com.lemonlab.ssuapp.AppController;
 import com.lemonlab.ssuapp.Model.Restaurant;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.Request.JSONArrayRequest;
@@ -64,7 +65,7 @@ public class RestaurantFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ArrayList<Restaurant> arrayList = new ArrayList<Restaurant>();
 
@@ -87,10 +88,17 @@ public class RestaurantFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 Log.i("json", response.toString());
 
-//                ImageLoader mImageLoader = AppController.getInstance().getImageLoader();
-//                NetworkImageView mImage;
-//                mImage = new NetworkImageView(getContext());
-//                mImage.setImageUrl(imgurl, mImageLoader);
+                String imgurl = null;
+                try {
+                    imgurl = response.get("url").toString();
+
+                    ImageLoader mImageLoader = AppController.getInstance().getImageLoader();
+                    NetworkImageView mImage;
+                    mImage = (NetworkImageView) view.findViewById(R.id.nv_food_intro);
+                    mImage.setImageUrl(imgurl, mImageLoader);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
