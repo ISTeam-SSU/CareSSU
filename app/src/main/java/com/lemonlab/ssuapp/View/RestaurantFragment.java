@@ -1,33 +1,27 @@
 package com.lemonlab.ssuapp.View;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 
+import com.lemonlab.ssuapp.Adapter.RestaurantListAdapter;
+import com.lemonlab.ssuapp.Model.Restaurant;
 import com.lemonlab.ssuapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RestaurantFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RestaurantFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class RestaurantFragment extends Fragment {
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RestaurantFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    private ListView listView = null;
+    private RestaurantListAdapter restaurantListAdapter = null;
+
     public static RestaurantFragment newInstance(String param1, String param2) {
         RestaurantFragment fragment = new RestaurantFragment();
         Bundle args = new Bundle();
@@ -40,15 +34,16 @@ public class RestaurantFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ArrayList<Restaurant> arrayList = new ArrayList<Restaurant>();
+
+        listView = (ListView)view.findViewById(R.id.restaurant_listview);
+
+        for(int i = 0 ; i < 10 ; i++){
+
+        }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurant, container, false);
-    }
 
 }

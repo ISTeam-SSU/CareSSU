@@ -10,6 +10,12 @@ public class Restaurant {
     Drawable image;
     boolean isLiked;
 
+    Restaurant(String title, Drawable image, boolean isLiked){
+        this.title = title;
+        this.image = image;
+        this.isLiked = isLiked;
+    }
+
     public String getTitle() {
         return title;
     }
