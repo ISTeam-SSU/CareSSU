@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return new TimeFragment();
                 case 1:
-                    return new NotiFragment();
+                    return RestaurantFragment.newInstance();
                 case 2:
                     return new LibraryFragment();
                 case 3:
