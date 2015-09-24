@@ -81,6 +81,14 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
 
         Button food = (Button) view.findViewById(R.id.bt_food_more);
         food.setOnClickListener(this);
+        Button haksik1 = (Button) view.findViewById(R.id.studnet_cafe);
+        haksik1.setOnClickListener(this);
+
+        Button haksik2 = (Button) view.findViewById(R.id.snack_food);
+        haksik2.setOnClickListener(this);
+
+        Button haksik3 = (Button) view.findViewById(R.id.employee);
+        haksik3.setOnClickListener(this);
 
         listView = (ListView)view.findViewById(R.id.restaurant_listview);
 
@@ -167,6 +175,19 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
             Log.i("data", arrayListInt.toString());
             intent.putIntegerArrayListExtra("Data", arrayListInt);
             startActivity(intent);
+        }else if(view.getId() == R.id.studnet_cafe){
+            Intent intent = new Intent(getContext(), EatActivity.class);
+            intent.putExtra("where", "학생식당");
+            startActivity(intent);
+        }else if(view.getId() == R.id.snack_food) {
+            Intent intent = new Intent(getContext(), EatActivity.class);
+            intent.putExtra("where", "스넥코너");
+            startActivity(intent);
+        }else if(view.getId() == R.id.employee) {
+            Intent intent = new Intent(getContext(), EatActivity.class);
+            intent.putExtra("where", "교직원식당");
+            startActivity(intent);
         }
+
     }
 }
