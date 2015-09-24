@@ -30,6 +30,7 @@
             android:name=".View.ReadingRoomActivity"
             android:label="@string/title_activity_reading_room" >
         </activity>
+        <activity android:name=".View.FoodActivity"/>
     </application>
 
 </manifest>

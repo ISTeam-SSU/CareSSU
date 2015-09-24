@@ -1,11 +1,15 @@
 package com.lemonlab.ssuapp.View;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +26,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.lemonlab.ssuapp.Adapter.EndlessRecyclerOnScrollListener;
+import com.lemonlab.ssuapp.Adapter.RecycleAdapter;
 import com.lemonlab.ssuapp.Adapter.RestaurantListAdapter;
 import com.lemonlab.ssuapp.AppController;
+import com.lemonlab.ssuapp.Model.Food;
 import com.lemonlab.ssuapp.Model.Restaurant;
 import com.lemonlab.ssuapp.R;
 import com.lemonlab.ssuapp.Request.JSONArrayRequest;
@@ -39,11 +46,14 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
-public class RestaurantFragment extends Fragment {
+public class RestaurantFragment extends Fragment implements View.OnClickListener{
     private ListView listView = null;
     private RestaurantListAdapter restaurantListAdapter = null;
+    ArrayList<Integer> arrayListInt = new ArrayList<>();
+
 
     public static RestaurantFragment newInstance() {
         RestaurantFragment fragment = new RestaurantFragment();
@@ -68,6 +78,9 @@ public class RestaurantFragment extends Fragment {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ArrayList<Restaurant> arrayList = new ArrayList<Restaurant>();
+
+        Button food = (Button) view.findViewById(R.id.bt_food_more);
+        food.setOnClickListener(this);
 
         listView = (ListView)view.findViewById(R.id.restaurant_listview);
 
@@ -115,6 +128,7 @@ public class RestaurantFragment extends Fragment {
         request.put("token", "");
 
 
+
         JSONArrayRequest libraryRequest = JSONArrayRequest.request(request, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -122,6 +136,11 @@ public class RestaurantFragment extends Fragment {
                 Log.i("json", response.toString());
                 try {
                     JSONObject object;
+                    for(int i=0; i<response.length(); i++){
+                        object = response.getJSONObject(i);
+                        int itemId = Integer.parseInt(object.get("item").toString().replace("i",""));
+                        arrayListInt.add(itemId);
+                    }
                     object = response.getJSONObject(0);
                     Log.i("First", object.get("item").toString());
 
@@ -139,5 +158,15 @@ public class RestaurantFragment extends Fragment {
         });
         queue.add(otherFoodRequest);
         queue.add(libraryRequest);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.bt_food_more){
+            Intent intent = new Intent(getContext(), FoodActivity.class);
+            Log.i("data", arrayListInt.toString());
+            intent.putIntegerArrayListExtra("Data", arrayListInt);
+            startActivity(intent);
+        }
     }
 }

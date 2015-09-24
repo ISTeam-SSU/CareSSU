@@ -49,12 +49,13 @@
             android:layout_margin="8dp"
             android:layout_alignParentLeft="true"
             android:text="오늘의 추천식"/>
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="8dp"
             android:textSize="20sp"
+            android:id="@+id/bt_food_more"
             android:text="more"/>
 
     </RelativeLayout>
